@@ -1,6 +1,7 @@
 //confirmation
-//右上（存证确权数量对比饼图）
 
+
+//右上（当前不同作品类型存证数量分布饼图）
 (function () {
 
     $.ajax({
@@ -9,16 +10,17 @@
         dataType: "json",
         success: function (response) {
             console.log(response); //object
-            console.log(JSON.stringify(response)); 
+            console.log(JSON.stringify(response));
             console.log(JSON.parse(JSON.stringify(response)))
-            console.log(typeof(JSON.parse(JSON.stringify(response))))
+            console.log(typeof (JSON.parse(JSON.stringify(response))))
 
+            //获取到的数据
             var data1 = JSON.parse(JSON.stringify(response))['posts'][0]['id']
             var data2 = JSON.parse(JSON.stringify(response))['posts'][1]['id']
             console.log(data1)
             console.log(data2)
 
-            
+
 
 
             //1. 实例化对象
@@ -65,16 +67,116 @@
                     },
                     //存证、确权
                     data: [{
-                        value: data1,
-                        name: '存证数量'
+                        value: 367,
+                        name: '复制权'
                     },
                     {
-                        value: data2,
-                        name: '确权数量'
+                        value: 468,
+                        name: '发行权'
+                    },
+                    {
+                        value: 334,
+                        name: '出租权'
+                    },
+                    {
+                        value: 494,
+                        name: '展览权'
+                    },
+                    {
+                        value: 493,
+                        name: '表演权'
+                    },
+                    {
+                        value: 323,
+                        name: '放映权'
                     }
                     ]
                 }]
             };
+            //3. 把配置给实力对象
+            myChart.setOption(option);
+            //4. 图表适应屏幕
+            window.addEventListener("resize", function () {
+                myChart.resize();
+            });
+
+
+        }
+    });
+
+
+
+})();
+
+//右中（个人账户与非个人账户接收者通证数量对比）
+(function () {
+
+    $.ajax({
+        url: "http://localhost:3000/db",
+        type: "get",
+        dataType: "json",
+        success: function (response) {
+            console.log(response); //object
+            console.log(JSON.stringify(response));
+            console.log(JSON.parse(JSON.stringify(response)))
+            console.log(typeof (JSON.parse(JSON.stringify(response))))
+
+            var data1 = JSON.parse(JSON.stringify(response))['posts'][0]['id']
+            var data2 = JSON.parse(JSON.stringify(response))['posts'][1]['id']
+            console.log(data1)
+            console.log(data2)
+
+
+
+
+            //1. 实例化对象
+            var myChart = echarts.init(document.querySelector(".middleright .chart"));
+            //2. 指定配置和数据
+
+            var option = {
+                color: ['#9fe6b8', '#1d9dff'],
+
+
+                title: {
+                    left: 'center'
+                },
+                tooltip: {
+                    trigger: 'item'
+                },
+                legend: {
+                    left: 'center',
+                    top: 'bottom',
+                    bottom: "0",
+                    itemHeight: 10,
+                    itemWidth: 10,
+                    textStyle: {
+                        color: "rgba(255,255,255,.5)",
+                        fontSize: "8"
+                    }
+                },
+
+                series: [
+                    {
+                        name: '通证接受者',
+                        type: 'pie',
+                        radius: '60%',
+                        data: [
+                            { value: 387, name: '个人账户' },
+                            { value: 811, name: '非个人账户' }
+                        ],
+                        emphasis: {
+                            itemStyle: {
+                                shadowBlur: 10,
+                                shadowOffsetX: 0,
+                                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                            }
+                        }
+                    }
+                ]
+            };
+
+
+
             //3. 把配置给实力对象
             myChart.setOption(option);
             //4. 图表适应屏幕

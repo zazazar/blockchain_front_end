@@ -69,18 +69,22 @@ header {
     }
 
     .column:nth-child(2) {
+        //background-color: pink;
         flex: 3;
         margin: 0 .125rem .1875rem;//中间一列有margin
         overflow: hidden;
     }
 
     .panel {
+
         position: relative;
         height: 7.954rem;
         padding: 0 .1875rem .5rem;
         margin-bottom: .1875rem;
         border: 1px solid rgba(25, 186, 139, 0.17);
         background: url(../images/line\(1\).png) rgba(255, 255, 255, 0.04);
+        //background-color: pink;
+        
 
         &::before {
             position: absolute;
@@ -105,7 +109,7 @@ header {
         }
 
         .panel-footer {
-
+            
             position: absolute;
             left: 0;
             bottom: 0;
@@ -144,7 +148,7 @@ header {
             font-weight: 400;
         }
         .chart{
-            height: 3rem;
+            height: 7rem;
             //background-color:pink;
         }
 
@@ -157,6 +161,7 @@ header {
         margin-bottom: .1875rem;
         border: 1px solid rgba(25, 186, 139, 0.17);
         background: url(../images/line\(1\).png) rgba(255, 255, 255, 0.04);
+        //background-color: pink;
 
         &::before {
             position: absolute;
@@ -304,3 +309,16 @@ header {
 
     }
 }
+
+
+/* 约束屏幕尺寸 */
+@media screen and (max-width: 1024px) {
+    html {
+      font-size: 42px !important;
+    }
+  }
+  @media screen and (min-width: 1920px) {
+    html {
+      font-size: 80px !important;
+    }
+  }

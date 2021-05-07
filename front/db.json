@@ -1,7 +1,11 @@
 {
-    "posts": [
+    "posts": [{
+            "id": 367,
+            "title": "json-serve",
+            "author": "typicode"
+        },
         {
-            "id": 200,
+            "id": 468,
             "title": "json-server",
             "author": "typicode"
         },
@@ -11,13 +15,11 @@
             "author": "typicode"
         }
     ],
-    "comments": [
-        {
-            "id": 1,
-            "body": "some comment",
-            "postId": 1
-        }
-    ],
+    "comments": [{
+        "id": 1,
+        "body": "some comment",
+        "postId": 1
+    }],
     "profile": {
         "name": "typicode"
     }

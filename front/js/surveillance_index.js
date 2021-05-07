@@ -159,51 +159,51 @@
             },
         ],
         series: [{
-                type: 'bar',
-                data: [70, 34, 60, 78, 69],
-                name: "条",
-                // 柱子之间的距离
-                barCategoryGap: 50,
-                //柱子的宽度
-                barWidth: 10,
-                yAxisIndex: 0,
-                // 柱子设为圆角
-                itemStyle: {
-                    normal: {
-                        barBorderRadius: 20,
-                        // 此时的color可以修改柱子的颜色
-                        // params是六个柱子的对象 dataIndex是当前柱子索引号
-                        color: function name(params) {
-                            return myColor[params.dataIndex];
-                        }
-                    }
-                },
-                // 图形上的文本标签
-                label: {
-                    normal: {
-                        show: true,
-                        // 图形内显示
-                        position: "inside",
-                        // 文字的显示格式
-                        formatter: "{c}%"
+            type: 'bar',
+            data: [70, 34, 60, 78, 69],
+            name: "条",
+            // 柱子之间的距离
+            barCategoryGap: 50,
+            //柱子的宽度
+            barWidth: 10,
+            yAxisIndex: 0,
+            // 柱子设为圆角
+            itemStyle: {
+                normal: {
+                    barBorderRadius: 20,
+                    // 此时的color可以修改柱子的颜色
+                    // params是六个柱子的对象 dataIndex是当前柱子索引号
+                    color: function name(params) {
+                        return myColor[params.dataIndex];
                     }
                 }
             },
-
-            {
-                name: "框",
-                type: 'bar',
-                barCategoryGap: 50,
-                barWidth: 15,
-                yAxisIndex: 1,
-                itemStyle: {
-                    color: "none",
-                    borderColor: "#00c1de",
-                    borderWidth: 3,
-                    barBorderRadius: 15
-                },
-                data: [100, 100, 100, 100, 100],
+            // 图形上的文本标签
+            label: {
+                normal: {
+                    show: true,
+                    // 图形内显示
+                    position: "inside",
+                    // 文字的显示格式
+                    formatter: "{c}%"
+                }
             }
+        },
+
+        {
+            name: "框",
+            type: 'bar',
+            barCategoryGap: 50,
+            barWidth: 15,
+            yAxisIndex: 1,
+            itemStyle: {
+                color: "none",
+                borderColor: "#00c1de",
+                borderWidth: 3,
+                barBorderRadius: 15
+            },
+            data: [100, 100, 100, 100, 100],
+        }
         ]
     };
     //3. 把配置给实例对象
@@ -300,7 +300,6 @@
 
         tooltip: {
             trigger: 'axis',
-
         },
         legend: {
             top: "0%",
@@ -361,103 +360,103 @@
 
         }],
         series: [{
-                name: '',
-                type: 'line',
-                smooth: true,
-                //单独修改当前线条的样式
-                lineStyle: {
-                    color: "#0184d5",
+            name: '',
+            type: 'line',
+            smooth: true,
+            //单独修改当前线条的样式
+            lineStyle: {
+                color: "#0184d5",
+                width: 2
+            },
+            //设置填充颜色
+            areaStyle: {
+                // 渐变色，只需要复制即可
+                color: new echarts.graphic.LinearGradient(
+                    0,
+                    0,
+                    0,
+                    1,
+                    [{
+                        offset: 0,
+                        color: "rgba(1, 132, 213, 0.1)" // 渐变色的起始颜色
+                    },
+                    {
+                        offset: 0.8, //偏移
+                        color: "rgba(1, 132, 213, 0.1)" // 渐变线的结束颜色
+                    }
+                    ],
+                    false
+                ),
+                shadowColor: "rgba(0, 0, 0, 0.1)"
+            },
+            emphasis: {
+                focus: 'series'
+            },
+            // 设置拐点 小圆点
+            symbol: "circle",
+            // 拐点大小
+            symbolSize: 8,
+            // 设置拐点颜色以及边框
+            itemStyle: {
+                color: "#0184d5",
+                borderColor: "rgba(221, 220, 107, .1)",
+                borderWidth: 12
+            },
+            // 开始不显示拐点， 鼠标经过显示
+            showSymbol: false,
+            // series  第一个对象data数据
+            data: [30, 40, 30, 40, 30, 40, 30, 60, 20, 40, 30, 40, 30, 40, 30, 40, 30, 60, 20, 40, 30, 40, 30, 40, 30, 40, 20, 60, 50, 40],
+        },
+
+
+
+
+        {
+            name: "",
+            type: "line",
+            smooth: true,
+            lineStyle: {
+                normal: {
+                    color: "#00d887",
                     width: 2
-                },
-                //设置填充颜色
-                areaStyle: {
-                    // 渐变色，只需要复制即可
+                }
+            },
+            areaStyle: {
+                normal: {
                     color: new echarts.graphic.LinearGradient(
                         0,
                         0,
                         0,
                         1,
                         [{
-                                offset: 0,
-                                color: "rgba(1, 132, 213, 0.1)" // 渐变色的起始颜色
-                            },
-                            {
-                                offset: 0.8, //偏移
-                                color: "rgba(1, 132, 213, 0.1)" // 渐变线的结束颜色
-                            }
+                            offset: 0,
+                            color: "rgba(0, 216, 135, 0.4)"
+                        },
+                        {
+                            offset: 0.8,
+                            color: "rgba(0, 216, 135, 0.1)"
+                        }
                         ],
                         false
                     ),
                     shadowColor: "rgba(0, 0, 0, 0.1)"
-                },
-                emphasis: {
-                    focus: 'series'
-                },
-                // 设置拐点 小圆点
-                symbol: "circle",
-                // 拐点大小
-                symbolSize: 8,
-                // 设置拐点颜色以及边框
-                itemStyle: {
-                    color: "#0184d5",
-                    borderColor: "rgba(221, 220, 107, .1)",
-                    borderWidth: 12
-                },
-                // 开始不显示拐点， 鼠标经过显示
-                showSymbol: false,
-                // series  第一个对象data数据
-                data: [30, 40, 30, 40, 30, 40, 30, 60, 20, 40, 30, 40, 30, 40, 30, 40, 30, 60, 20, 40, 30, 40, 30, 40, 30, 40, 20, 60, 50, 40],
+                }
             },
-
-
-
-
-            {
-                name: "",
-                type: "line",
-                smooth: true,
-                lineStyle: {
-                    normal: {
-                        color: "#00d887",
-                        width: 2
-                    }
-                },
-                areaStyle: {
-                    normal: {
-                        color: new echarts.graphic.LinearGradient(
-                            0,
-                            0,
-                            0,
-                            1,
-                            [{
-                                    offset: 0,
-                                    color: "rgba(0, 216, 135, 0.4)"
-                                },
-                                {
-                                    offset: 0.8,
-                                    color: "rgba(0, 216, 135, 0.1)"
-                                }
-                            ],
-                            false
-                        ),
-                        shadowColor: "rgba(0, 0, 0, 0.1)"
-                    }
-                },
-                // 设置拐点 小圆点
-                symbol: "circle",
-                // 拐点大小
-                symbolSize: 5,
-                // 设置拐点颜色以及边框
-                itemStyle: {
-                    color: "#00d887",
-                    borderColor: "rgba(221, 220, 107, .1)",
-                    borderWidth: 12
-                },
-                // 开始不显示拐点， 鼠标经过显示
-                showSymbol: false,
-                // series  第二个对象data数据
-                data: [130, 10, 20, 40, 30, 40, 80, 60, 20, 40, 90, 40, 20, 140, 30, 40, 130, 20, 20, 40, 80, 70, 30, 40, 30, 120, 20, 99, 50, 20]
+            // 设置拐点 小圆点
+            symbol: "circle",
+            // 拐点大小
+            symbolSize: 5,
+            // 设置拐点颜色以及边框
+            itemStyle: {
+                color: "#00d887",
+                borderColor: "rgba(221, 220, 107, .1)",
+                borderWidth: 12
             },
+            // 开始不显示拐点， 鼠标经过显示
+            showSymbol: false,
+            // series  第二个对象data数据
+            data: [130, 10, 20, 40, 30, 40, 80, 60, 20, 40, 90, 40, 20, 140, 30, 40, 130, 20, 20, 40, 80, 70, 30, 40, 30, 120, 20, 99, 50, 20]
+        },
 
         ]
     };
@@ -528,25 +527,25 @@
 
             //  series 中的数据
             data: [{
-                    value: 1,
-                    name: "视频类平台"
-                },
-                {
-                    value: 4,
-                    name: "社交网络"
-                },
-                {
-                    value: 2,
-                    name: "搜索引擎"
-                },
-                {
-                    value: 2,
-                    name: "小网站"
-                },
-                {
-                    value: 1,
-                    name: "小网站"
-                }
+                value: 1,
+                name: "视频类平台"
+            },
+            {
+                value: 4,
+                name: "社交网络"
+            },
+            {
+                value: 2,
+                name: "搜索引擎"
+            },
+            {
+                value: 2,
+                name: "小网站"
+            },
+            {
+                value: 1,
+                name: "小网站"
+            }
             ],
         }]
     };
@@ -603,37 +602,37 @@
                 borderRadius: 5
             },
             data: [{
-                    value: 20,
-                    name: '云南'
-                },
-                {
-                    value: 26,
-                    name: '北京'
-                },
-                {
-                    value: 24,
-                    name: '山东'
-                },
-                {
-                    value: 25,
-                    name: '河北'
-                },
-                {
-                    value: 20,
-                    name: '江苏'
-                },
-                {
-                    value: 25,
-                    name: '浙江'
-                },
-                {
-                    value: 30,
-                    name: '四川'
-                },
-                {
-                    value: 42,
-                    name: '湖北'
-                }
+                value: 20,
+                name: '云南'
+            },
+            {
+                value: 26,
+                name: '北京'
+            },
+            {
+                value: 24,
+                name: '山东'
+            },
+            {
+                value: 25,
+                name: '河北'
+            },
+            {
+                value: 20,
+                name: '江苏'
+            },
+            {
+                value: 25,
+                name: '浙江'
+            },
+            {
+                value: 30,
+                name: '四川'
+            },
+            {
+                value: 42,
+                name: '湖北'
+            }
             ]
         }]
     };
@@ -673,29 +672,29 @@
                 }
             },
             indicator: [{
-                    name: '发行权',
-                    max: 6500
-                },
-                {
-                    name: '展览权',
-                    max: 16000
-                },
-                {
-                    name: '改编权',
-                    max: 30000
-                },
-                {
-                    name: '翻译权',
-                    max: 38000
-                },
-                {
-                    name: '广播权',
-                    max: 52000
-                },
-                {
-                    name: '放映权',
-                    max: 25000
-                }
+                name: '发行权',
+                max: 6500
+            },
+            {
+                name: '展览权',
+                max: 16000
+            },
+            {
+                name: '改编权',
+                max: 30000
+            },
+            {
+                name: '翻译权',
+                max: 38000
+            },
+            {
+                name: '广播权',
+                max: 52000
+            },
+            {
+                name: '放映权',
+                max: 25000
+            }
             ]
         },
         series: [{
@@ -703,9 +702,9 @@
             type: 'radar',
             // areaStyle: {normal: {}},
             data: [{
-                    value: [4300, 10000, 28000, 35000, 50000, 19000],
-                    name: '维权类型数量'
-                }
+                value: [4300, 10000, 28000, 35000, 50000, 19000],
+                name: '维权类型数量'
+            }
             ]
         }]
     };

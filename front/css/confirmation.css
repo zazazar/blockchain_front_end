@@ -116,7 +116,7 @@ header .showTime {
   font-weight: 400;
 }
 .mainbox .panel .chart {
-  height: 3rem;
+  height: 7rem;
 }
 .mainbox .innerpanel {
   position: relative;
@@ -247,4 +247,15 @@ header .showTime {
 }
 .mainbox .rightpanel .chart {
   height: 3rem;
+}
+/* 约束屏幕尺寸 */
+@media screen and (max-width: 1024px) {
+  html {
+    font-size: 42px !important;
+  }
+}
+@media screen and (min-width: 1920px) {
+  html {
+    font-size: 80px !important;
+  }
 }
