@@ -10,7 +10,7 @@
         success: function(response) {
 
             var num = [];
-            
+
             response.data.forEach(function(value, index, array) {
                 var obj = new Object();
                 obj.name = array[index]['workType'];
@@ -238,7 +238,7 @@
                     },
                     //存证、确权
                     //只截取所有取值的前六项
-                    data: num.slice(1,6)
+                    data: num.slice(1, 6)
                 }]
             };
             //3. 把配置给实例对象
@@ -268,7 +268,7 @@
             //两个数组
             var num_Month = [];
             var num_CertificateAmount = [];
-            
+
             response.data.forEach(function(value, index, array) {
                 num_Month.push(array[index]['Month']);
                 num_CertificateAmount.push(array[index]['CertificateAmount']);
@@ -466,7 +466,7 @@
         success: function(response) {
             var num_Month = [];
             var num_CopyRightAmount = [];
-            
+
             response.data.forEach(function(value, index, array) {
                 num_Month.push(array[index]['Month']);
                 num_CopyRightAmount.push(array[index]['CopyRightAmount']);
@@ -659,21 +659,35 @@
 (function() {
 
     $.ajax({
-        url: "http://localhost:3000/db",
+        url: "http://39.102.93.47:9002/backend/certificateAmountGroupByWorkTypeEXchange",
         type: "get",
         dataType: "json",
         success: function(response) {
-            // console.log(response); //object
-            // console.log(JSON.stringify(response));
-            // console.log(JSON.parse(JSON.stringify(response)))
-            // console.log(typeof (JSON.parse(JSON.stringify(response))))
+            console.log(response.data)
 
-            // //获取到的数据
-            // var data1 = JSON.parse(JSON.stringify(response))['posts'][0]['id']
-            // var data2 = JSON.parse(JSON.stringify(response))['posts'][1]['id']
-            // console.log(data1)
-            // console.log(data2)
+            // x轴月份
+            var x_num = new Array();
+            for (var i = 0; i < response.data.length; i++) {
+                x_num.push(response.data[i][0]['Month'])
+            }
 
+            // 作品类型
+            var workType = new Array();
+            for (var i = 0; i < response.data[0].length; i++) {
+                workType.push(response.data[0][i]['workType'])
+            }
+
+            // y轴数据
+            var y_num = new Array();
+
+            for (var i = 0; i < response.data[0].length; i++) {//4
+                var a = new Array();
+                for (var j = 0; j < response.data.length; j++) {//3
+                    a.push(response.data[j][i]['CertificateAmount']);
+                }
+                y_num.push(a)
+            }
+            //console.log(y_num)
 
             //1. 实例化对象
             var myChart = echarts.init(document.querySelector(".upperleft .chart"));
@@ -684,7 +698,6 @@
 
                 legend: {
                     show: true,
-                    data: ['音乐', '电影', '美术']
                 },
                 grid: {
                     left: "0%",
@@ -704,14 +717,15 @@
                 },
                 xAxis: {
                     type: 'category',
-                    data: ['二月', '五月', '八月', '十一月']
+                    //data: ['二月', '五月', '八月', '十一月']
+                    data: x_num
                 },
                 yAxis: {
                     type: 'value'
                 },
                 series: [{
-                        name: '音乐',
-                        data: [97, 81, 81, 97],
+                        name: workType[0],
+                        data: y_num[0],
                         type: 'bar',
                         barWidth: 35,
                         showBackground: true,
@@ -724,8 +738,8 @@
                         }
                     },
                     {
-                        name: '电影',
-                        data: [70, 64, 69, 67],
+                        name: workType[1],
+                        data: y_num[1],
                         type: 'bar',
                         barWidth: 35,
                         showBackground: true,
@@ -738,8 +752,8 @@
                         }
                     },
                     {
-                        name: '美术',
-                        data: [47, 44, 41, 43],
+                        name: workType[2],
+                        data: y_num[2],
                         type: 'bar',
                         barWidth: 35,
                         showBackground: true,
