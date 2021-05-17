@@ -8,6 +8,7 @@
         type: "get",
         dataType: "json",
         success: function(response) {
+            console.log('右上success')
 
             var num = [];
 
@@ -99,7 +100,7 @@
         type: "get",
         dataType: "json",
         success: function(response) {
-            //console.log(response); //object
+            console.log('右中success')
 
             var num = [];
             var KEY = Object.keys(response.data);
@@ -178,6 +179,8 @@
         type: "get",
         dataType: "json",
         success: function(response) {
+
+            console.log('右下success')
 
             var num = [];
             var KEY = Object.keys(response.data);
@@ -264,6 +267,9 @@
         type: "get",
         dataType: "json",
         success: function(response) {
+
+            console.log('左下success');
+
 
             //两个数组
             var num_Month = [];
@@ -464,6 +470,9 @@
         type: "get",
         dataType: "json",
         success: function(response) {
+
+            console.log('中下success');
+
             var num_Month = [];
             var num_CopyRightAmount = [];
 
@@ -663,7 +672,8 @@
         type: "get",
         dataType: "json",
         success: function(response) {
-            console.log(response.data)
+            //console.log(response.data)
+            console.log('左上success');
 
             // x轴月份
             var x_num = new Array();
