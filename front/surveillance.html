@@ -2,12 +2,14 @@
 <html lang="en">
 
 <head>
+    <meta http-equiv="refresh" content="60">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>监测维权</title>
     <link rel="stylesheet" href="css/surveillance.css">
     <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/3.0.11/vue.cjs.js"></script>
 </head>
 
 <body>
@@ -36,64 +38,66 @@
     <!-- 页面主体部分 -->
     <section class="mainbox">
         <div class="column">
-            <div class="panel bar" >
-                <h2>柱形图-1 </h2>
+            <div class="panel bar">
+                <h2>当前不同作品类型侵权数量</h2>
                 <div class="chart">图表 </div>
                 <div class="panel-footer"></div>
             </div>
-            <div class="panel line" >
-                <h2>柱形图-2 </h2>
+            <div class="panel line">
+                <h2>不同作品类型的侵权数量变化</h2>
                 <div class="chart">图表 </div>
                 <div class="panel-footer"></div>
             </div>
-            <div class="panel pie" >
-                <h2>柱形图-3 </h2>
+            <div class="panel pie">
+                <h2>侵权数量前三站点</h2>
                 <div class="chart">图表 </div>
                 <div class="panel-footer"></div>
             </div>
         </div>
-        
+
 
         <div class="column">
-        <!-- no模块制作 -->
-        <div class="no">
-            <div class="no-hd"> <!--  ul>li*2 tab键 -->
-                <ul>
-                    <li>123456</li>
-                    <li>111111</li>
-                </ul>
+            <!-- no模块制作 -->
+            <div class="no">
+                <div class="no-hd num">
+                    <!--  ul>li*2 tab键 -->
+                    <ul>
+                        <li>123456</li>
+                        <li>111111</li>
+                    </ul>
+                </div>
+                <div class="no-bd">
+                    <ul>
+                        <li>已关停网站数量</li>
+                        <li>下架侵权作品数量</li>
+                    </ul>
+                </div>
             </div>
-            <div class="no-bd">
-                <ul>
-                    <li>已关停网站数量</li>
-                    <li>下架侵权作品数量</li>
-                </ul>
-            </div>
-        </div>
 
-        
-        <div class="map">
-         <!-- 地图模块 -->
-         <div class="map1"></div>
-         <div class="map2"></div>
-         <div class="map3"></div>
-         <div class="chart">地图</div>
-        </div>
+
+            <div class="map">
+                <!-- 地图模块 -->
+                <div class="map1"></div>
+                <div class="map2"></div>
+                <div class="map3"></div>
+                <div class="chart">地图</div>
+            </div>
         </div>
 
         <div class="column">
-            <div class="panel bar2" >
-                <h2>柱形图-4 </h2>
+            <div class="panel bar2">
+                <h2>当前不同创作类型侵权数量</h2>
                 <div class="chart">图表 </div>
                 <div class="panel-footer"></div>
             </div>
-            <div class="panel line2" >
-                <h2>柱形图-5 </h2>
+            <div class="panel line2">
+                <h2>不同创作类型的侵权数量变化</h2>
                 <div class="chart">图表 </div>
                 <div class="panel-footer"></div>
-            </div> 
-            <div class="panel pie2" >
-                <h2>柱形图-6 </h2>
+            </div>
+            <div class="panel pie2">
+                <!-- <h2>侵权数量前三站点被侵权作品类型分布</h2> -->
+                <h2 id="demo"></h2>
                 <div class="chart">图表 </div>
                 <div class="panel-footer"></div>
             </div>
@@ -105,6 +109,15 @@
     <script src="js/surveillance_index.js"></script>
 </body>
 
+<!-- <script language="JavaScript">
+    setTimeout(function () { location.reload() }, 3000); //指定1秒刷新一次
+</script> -->
+
+<script>
+    function demo() {
+        return "侵权数量前三站点被侵权作品类型分布"
+    }
+    document.getElementById("demo").innerHTML = demo();
+</script>
+
 </html>
-
-
