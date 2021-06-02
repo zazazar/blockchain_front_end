@@ -2,14 +2,13 @@
 <html lang="en">
 
 <head>
-    <meta http-equiv="refresh" content="60">
+    <!-- <meta http-equiv="refresh" content="100"> -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>监测维权</title>
     <link rel="stylesheet" href="css/surveillance.css">
     <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script src="https://cdn.bootcdn.net/ajax/libs/vue/3.0.11/vue.cjs.js"></script>
 </head>
 
 <body>
@@ -62,18 +61,17 @@
                 <div class="no-hd num">
                     <!--  ul>li*2 tab键 -->
                     <ul>
-                        <li>123456</li>
-                        <li>111111</li>
+                        <li id="TortCount">123456</li>
+                        <li id="TortClickCount">111111</li>
                     </ul>
                 </div>
                 <div class="no-bd">
                     <ul>
-                        <li>已关停网站数量</li>
-                        <li>下架侵权作品数量</li>
+                        <li>发现侵权作品总数量</li>
+                        <li>被侵权作品总点击数</li>
                     </ul>
                 </div>
             </div>
-
 
             <div class="map">
                 <!-- 地图模块 -->
@@ -96,28 +94,57 @@
                 <div class="panel-footer"></div>
             </div>
             <div class="panel pie2">
-                <!-- <h2>侵权数量前三站点被侵权作品类型分布</h2> -->
-                <h2 id="demo"></h2>
+                <h2>侵权数量前三站点被侵权作品类型分布</h2>
                 <div class="chart">图表 </div>
                 <div class="panel-footer"></div>
             </div>
         </div>
     </section>
     <script src="js/flexible.js"></script>
-
     <script src="js/echarts.min.js"></script>
     <script src="js/surveillance_index.js"></script>
 </body>
 
-<!-- <script language="JavaScript">
-    setTimeout(function () { location.reload() }, 3000); //指定1秒刷新一次
-</script> -->
 
 <script>
-    function demo() {
-        return "侵权数量前三站点被侵权作品类型分布"
+
+    //发现侵权作品总数量
+    function TortCount() {
+        // 这里是同步调用了ajax
+        var a = 1000;
+        $.ajax({
+            url: "http://39.102.93.47:9002/backend/listen/TortCount",
+            type: "get",
+            dataType: "json",
+            async : false,
+            success: function (response) {
+                a = response.data.toString();
+            }
+        });
+        return a
     }
-    document.getElementById("demo").innerHTML = demo();
+    
+    // 被侵权作品总点击数
+    function TortClickCount() {
+        // 这里是同步调用了ajax
+        var a = 1000;
+        $.ajax({
+            url: "http://39.102.93.47:9002/backend/listen/TortClickCount",
+            type: "get",
+            dataType: "json",
+            async : false,
+            success: function (response) {
+                a = response.data.toString();
+            }
+        });
+        return a
+    }
+
+    document.getElementById("TortCount").innerHTML = TortCount();
+    document.getElementById("TortClickCount").innerHTML = TortClickCount();
+
+    // setTimeout(function () { location.reload() }, 3000); //指定1秒刷新一次
+
 </script>
 
 </html>

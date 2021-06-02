@@ -655,7 +655,7 @@
         dataType: "json",
         success: function(response) {
 
-            console.log('左下success');
+            // console.log('左下success');
 
             var num = [];
             response.data.forEach(function(value, index, array) {
@@ -730,10 +730,10 @@
                 myChart.resize();
             });
 
-            function direct() {
-                console.info("time: ", (new Date()).getTime());
-            }
-            setInterval(direct(), 1000);
+            // function direct() {
+            //     console.info("time: ", (new Date()).getTime());
+            // }
+            // setInterval(direct(), 1000);
         }
     });
 
@@ -742,16 +742,7 @@
 
 })();
 
-// (function() {
-//     function direct() {
-//         console.info( "time: ", ( new Date() ).getTime() );
-//     }
-//         setInterval(direct(), 1000);
-
-// })();
-
-
-//饼形图2 右下
+//饼形图2 右下 
 (function() {
 
     $.ajax({
@@ -828,74 +819,107 @@
 
 })();
 
-//地图部分
+//中间部分
 (function() {
-    //1. 实例化对象
-    var myChart = echarts.init(document.querySelector(".map .chart"));
-    //2. 指定配置和数据
-    var option = {
 
-        tooltip: {},
-        legend: {
-            data: ['维权类型数量'],
-            textStyle: {
-                color: "rgba(255,255,255,.5)",
-                fontSize: "15"
-            }
-        },
-        radar: {
-            // shape: 'circle',
-            radius: "70%",
-            name: {
-                textStyle: {
-                    color: '#fff',
-                    //backgroundColor: '#999',
-                    borderRadius: 10,
-                    padding: [3, 10]
-                }
-            },
-            indicator: [{
-                    name: '发行权',
-                    max: 6500
-                },
-                {
-                    name: '展览权',
-                    max: 16000
-                },
-                {
-                    name: '改编权',
-                    max: 30000
-                },
-                {
-                    name: '翻译权',
-                    max: 38000
-                },
-                {
-                    name: '广播权',
-                    max: 52000
-                },
-                {
-                    name: '放映权',
-                    max: 25000
-                }
-            ]
-        },
-        series: [{
-            name: '预算 vs 开销（Budget vs spending）',
-            type: 'radar',
-            // areaStyle: {normal: {}},
-            data: [{
-                value: [4300, 10000, 28000, 35000, 50000, 19000],
-                name: '维权类型数量'
-            }]
-        }]
-    };
+    $.ajax({
+        url: "http://39.102.93.47:9002/backend/listen/TortCountGroupByTortSiteGroupByWorkType",
+        type: "get",
+        dataType: "json",
+        success: function(response) {
 
-    //3. 把配置给实例对象
-    myChart.setOption(option);
-    //4. 图表与屏幕自适应
-    window.addEventListener("resize", function() {
-        myChart.resize();
+            var num = [];
+            
+            response.data.forEach(function(value, index, array) {
+                var obj = new Object();
+                obj.name = array[index]['workType'];
+                obj.value = array[index]['TortCount'];
+                num.push(obj)
+            });
+            // console.log(num);
+
+            //console.log('中间success');
+
+            //1. 实例化对象
+            var myChart = echarts.init(document.querySelector(".map .chart"));
+            //2. 指定配置和数据
+            var option = {
+
+                title: {
+                    text: '侵权数量前三站点发起维权作品类型分布',
+                    left: 'center',
+                    textStyle: {
+                        color: '#fff',
+                        fontSize: 15
+                    },
+                    padding: 20,
+                    fontWeight: 'normal',
+                },
+
+                tooltip: {},
+                legend: {
+                    // data: ['维权类型数量'],
+                    textStyle: {
+                        color: "rgba(255,255,255,.5)",
+                        fontSize: "15",
+                    },
+                    top: 'bottom'
+                },
+                radar: {
+                    // shape: 'circle',
+                    radius: "70%",
+                    name: {
+                        textStyle: {
+                            color: '#fff',
+                            //backgroundColor: '#999',
+                            borderRadius: 10,
+                            padding: [3, 10]
+                        }
+                    },
+                    indicator: [{
+                            name: '发行权',
+                            max: 6500
+                        },
+                        {
+                            name: '展览权',
+                            max: 16000
+                        },
+                        {
+                            name: '改编权',
+                            max: 30000
+                        },
+                        {
+                            name: '翻译权',
+                            max: 38000
+                        },
+                        {
+                            name: '广播权',
+                            max: 52000
+                        },
+                        {
+                            name: '放映权',
+                            max: 25000
+                        }
+                    ]
+                },
+                series: [{
+                    type: 'radar',
+                    // areaStyle: {normal: {}},
+                    data: [{
+                        value: [6600, 10000, 28000, 35000, 50000, 19000],
+                        name: '被侵权作品数量'
+                    }]
+                }]
+            };
+
+            //3. 把配置给实例对象
+            myChart.setOption(option);
+            //4. 图表与屏幕自适应
+            window.addEventListener("resize", function() {
+                myChart.resize();
+            });
+        }
     });
+
 
 })();
