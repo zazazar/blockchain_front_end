@@ -12,7 +12,8 @@ sample是没有ajax请求的静态页面
 
 vscode安装open in browser插件 右键->open in default browser 或 command+b 即可打开html
 
-待解决问题：网页自动刷新 
+待解决问题：网页自动刷新
+
 思路一：html自动刷新 
 ```html
 <html><meta http-equiv="refresh" content="100"> 每隔100s自动刷新</html>
