@@ -744,7 +744,7 @@
 
 //饼形图2 右下 
 (function() {
-
+    
     $.ajax({
         url: "http://39.102.93.47:9002/backend/listen/TortCountGroupByTortSiteGroupByWorkType",
         type: "get",
@@ -762,8 +762,9 @@
 
             //console.log('右下success');
 
-            //1. 实例化对象
-            var myChart = echarts.init(document.querySelector(".pie2 .chart"));
+            //1. 实例化对象          
+            var myChart = echarts.init(document.querySelector(".pie2 .chart")); 
+
             //2. 指定配置和数据
             var option = {
 
@@ -823,19 +824,26 @@
 (function() {
 
     $.ajax({
-        url: "http://39.102.93.47:9002/backend/listen/TortCountGroupByTortSiteGroupByWorkType",
+        url: "http://39.102.93.47:9002/backend/listen/Tort_AND_ClaimCountGroupByWorkType",
         type: "get",
         dataType: "json",
         success: function(response) {
 
             var num = [];
-            
+            var ClaimCount = [];
+            var TortCount = [];
+
             response.data.forEach(function(value, index, array) {
                 var obj = new Object();
                 obj.name = array[index]['workType'];
-                obj.value = array[index]['TortCount'];
+                obj.max = array[index]['TortCount'];
+                ClaimCount.push(array[index]['ClaimCount'])
+                TortCount.push(array[index]['TortCount'])
                 num.push(obj)
             });
+
+            // console.log(ClaimCount);
+            // console.log(TortCount);
             // console.log(num);
 
             //console.log('中间success');
@@ -844,6 +852,8 @@
             var myChart = echarts.init(document.querySelector(".map .chart"));
             //2. 指定配置和数据
             var option = {
+                color: ['#00FFFF'],
+                // '#9fe6b8','#32c5e9', 
 
                 title: {
                     text: '侵权数量前三站点发起维权作品类型分布',
@@ -876,38 +886,14 @@
                             padding: [3, 10]
                         }
                     },
-                    indicator: [{
-                            name: '发行权',
-                            max: 6500
-                        },
-                        {
-                            name: '展览权',
-                            max: 16000
-                        },
-                        {
-                            name: '改编权',
-                            max: 30000
-                        },
-                        {
-                            name: '翻译权',
-                            max: 38000
-                        },
-                        {
-                            name: '广播权',
-                            max: 52000
-                        },
-                        {
-                            name: '放映权',
-                            max: 25000
-                        }
-                    ]
+                    indicator: num
                 },
                 series: [{
                     type: 'radar',
                     // areaStyle: {normal: {}},
                     data: [{
-                        value: [6600, 10000, 28000, 35000, 50000, 19000],
-                        name: '被侵权作品数量'
+                        value: ClaimCount,
+                        name: '发起维权作品数量'
                     }]
                 }]
             };
@@ -923,3 +909,4 @@
 
 
 })();
+
