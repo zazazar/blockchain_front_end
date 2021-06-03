@@ -56,7 +56,7 @@ header .showTime {
   padding: 0 0.1875rem 0.5rem;
   margin-bottom: 0.1875rem;
   border: 1px solid rgba(25, 186, 139, 0.17);
-  background: url(../images/line\(1\).png) rgba(255, 255, 255, 0.04);
+  background: url(../images/line.png) rgba(255, 255, 255, 0.04);
 }
 .mainbox .panel::before {
   position: absolute;

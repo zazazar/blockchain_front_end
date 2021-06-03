@@ -4,7 +4,11 @@
 //     mychart = 
 // })();
 
-//左上 截止当前不同作品类型发生的侵权数量分布
+update();
+self.setInterval("update()", 1000);
+function update(){
+
+    //左上 截止当前不同作品类型发生的侵权数量分布
 (function() {
 
     $.ajax({
@@ -13,7 +17,7 @@
         dataType: "json",
         success: function(response) {
 
-            // console.log('左上success');
+            console.log('左上success');
 
             //两个数组
             var workType = [];
@@ -118,7 +122,6 @@
 
 })();
 
-
 //柱状图2 右上 当前不同创作类型侵权数量
 (function() {
 
@@ -128,7 +131,7 @@
         dataType: "json",
         success: function(response) {
 
-            // console.log('右上success');
+            console.log('右上success');
 
             //两个数组
             var creationType = [];
@@ -280,7 +283,7 @@
         dataType: "json",
         success: function(response) {
 
-            // console.log('左中success');
+            console.log('左中success');
 
             // x轴月份
             var x_num = new Array();
@@ -404,7 +407,7 @@
         dataType: "json",
         success: function(response) {
 
-            // console.log('右中success');
+            console.log('右中success');
 
             // x轴月份
             var x_num = new Array();
@@ -655,7 +658,7 @@
         dataType: "json",
         success: function(response) {
 
-            // console.log('左下success');
+            console.log('左下success');
 
             var num = [];
             response.data.forEach(function(value, index, array) {
@@ -760,7 +763,7 @@
             });
             // console.log(num);
 
-            //console.log('右下success');
+            console.log('右下success');
 
             //1. 实例化对象          
             var myChart = echarts.init(document.querySelector(".pie2 .chart")); 
@@ -846,7 +849,7 @@
             // console.log(TortCount);
             // console.log(num);
 
-            //console.log('中间success');
+            console.log('中间success');
 
             //1. 实例化对象
             var myChart = echarts.init(document.querySelector(".map .chart"));
@@ -910,3 +913,6 @@
 
 })();
 
+
+
+}

@@ -2,13 +2,15 @@
 <html lang="en">
 
 <head>
-    <!-- <meta http-equiv="refresh" content="5"> -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>监测维权</title>
     <link rel="stylesheet" href="css/surveillance.css">
     <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="js/flexible.js"></script>
+    <script src="js/echarts.min.js"></script>
+    <script src="js/surveillance_index.js"></script>
 </head>
 
 <body>
@@ -53,7 +55,6 @@
                 <div class="panel-footer"></div>
             </div>
         </div>
-
 
         <div class="column">
             <!-- no模块制作 -->
@@ -100,9 +101,6 @@
             </div>
         </div>
     </section>
-    <script src="js/flexible.js"></script>
-    <script src="js/echarts.min.js"></script>
-    <script src="js/surveillance_index.js"></script>
 </body>
 
 
@@ -123,7 +121,7 @@
         });
         return a
     }
-    
+
     // 被侵权作品总点击数
     function TortClickCount() {
         // 这里是同步调用了ajax
@@ -142,7 +140,6 @@
 
     document.getElementById("TortCount").innerHTML = TortCount();
     document.getElementById("TortClickCount").innerHTML = TortClickCount();
-
     // setTimeout(function () { location.reload() }, 5000); //指定1秒刷新一次
 
 </script>
