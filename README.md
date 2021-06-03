@@ -7,7 +7,9 @@
 
 ### 6.02 完成存证确权和监测维权
 confirmation.html对应confirmation_index.js
+
 surveillance.html对应surveillance_index.js
+
 sample是没有ajax请求的静态页面
 
 vscode安装open in browser插件 右键->open in default browser 或 command+b 即可打开html
