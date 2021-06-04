@@ -1,5 +1,5 @@
 update();
-self.setInterval("update()", 5000);//毫秒
+self.setInterval("update()", 5000); //毫秒
 
 function update() {
     //confirmation
