@@ -35,3 +35,9 @@ function update(){
 //原来的代码
 }
 ```
+
+### 6.04 ajax在error时写入静态数据，加入draw()优化可读性
+分离函数
+```javascript
+function draw(num_Month, num_CertificateAmount){}
+```
