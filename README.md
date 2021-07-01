@@ -45,3 +45,6 @@ function update(){
 ```javascript
 function draw(num_Month, num_CertificateAmount){}
 ```
+
+### 7.02 surveillance加入自动刷新和假数据
+surveillance加入自动刷新和假数据

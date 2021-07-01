@@ -5,32 +5,46 @@
 // })();
 
 update();
-self.setInterval("update()", 1000);
-function update(){
+self.setInterval("update()", 100000);
+
+function update() {
 
     //左上 截止当前不同作品类型发生的侵权数量分布
-(function() {
+    (function() {
 
-    $.ajax({
-        url: "http://39.102.93.47:9002/backend/listen/TortCountGroupByWorkType",
-        type: "get",
-        dataType: "json",
-        success: function(response) {
+        var flagRectrive = false;
 
-            console.log('左上success');
+        $.ajax({
+            url: "http://39.102.93.47:9002/backend/listen/TortCountGroupByWorkType",
+            type: "get",
+            dataType: "json",
+            success: function(response) {
+                flagRectrive = true; // 收到有效数据
+                console.log('左上success');
 
-            //两个数组
-            var workType = [];
-            var TortCount = [];
+                //两个数组
+                var workType = [];
+                var TortCount = [];
 
-            response.data.forEach(function(value, index, array) {
-                workType.push(array[index]['workType']);
-                TortCount.push(array[index]['TortCount']);
-            });
+                response.data.forEach(function(value, index, array) {
+                    workType.push(array[index]['workType']);
+                    TortCount.push(array[index]['TortCount']);
+                });
 
-            // console.log(workType)
-            // console.log(TortCount)
+                console.log(workType)
+                console.log(TortCount)
+                draw(workType, TortCount)
+            },
+            error: function() {
+                console.log('左上error');
+                //两个数组
+                var workType = ["图形", "文字", "美术", "音乐", "口述", "杂技艺术"];
+                var TortCount = [185, 174, 159, 158, 57, 45];
+                draw(workType, TortCount)
+            }
+        });
 
+        function draw(workType, TortCount) {
 
             //1. 实例化对象
             var myChart = echarts.init(document.querySelector('.bar .chart'));
@@ -117,42 +131,59 @@ function update(){
             });
 
         }
-    });
 
 
-})();
+    })();
 
-//柱状图2 右上 当前不同创作类型侵权数量
-(function() {
+    //柱状图2 右上 当前不同创作类型侵权数量
+    (function() {
 
-    $.ajax({
-        url: "http://39.102.93.47:9002/backend/listen/TortCountGroupByCreationType",
-        type: "get",
-        dataType: "json",
-        success: function(response) {
+        var flagRectrive = false;
 
-            console.log('右上success');
+        $.ajax({
+            url: "http://39.102.93.47:9002/backend/listen/TortCountGroupByCreationType",
+            type: "get",
+            dataType: "json",
+            success: function(response) {
 
-            //两个数组
-            var creationType = [];
-            var TortCount = [];
-            var TortCountPercentage = [];
-            var sum = 0;
-            var sumArr = new Array();
+                flagRectrive = true; // 收到有效数据
+                console.log('右上success');
 
-            response.data.forEach(function(value, index, array) {
-                creationType.push(array[index]['creationType']);
-                TortCount.push(array[index]['TortCount']);
-                sum = sum + array[index]['TortCount'];
-            });
+                //两个数组
+                var creationType = []; //1
+                var TortCount = []; //2
+                var TortCountPercentage = [];
+                var sum = 0;
+                var sumArr = new Array(); //3
 
-            for (var i = 0; i < TortCount.length; i++) {
-                sumArr[i] = sum;
-                TortCountPercentage[i] = parseInt(100 * TortCount[i] / sum);
+                response.data.forEach(function(value, index, array) {
+                    creationType.push(array[index]['creationType']);
+                    TortCount.push(array[index]['TortCount']);
+                    sum = sum + array[index]['TortCount'];
+                });
+
+                for (var i = 0; i < TortCount.length; i++) {
+                    sumArr[i] = sum;
+                    TortCountPercentage[i] = parseInt(100 * TortCount[i] / sum);
+                }
+
+                console.log(creationType)
+                console.log(TortCount)
+                console.log(sumArr)
+
+                draw(creationType, TortCount, sumArr);
+
+            },
+            error: function() {
+                console.log('右上error');
+                var creationType = ["曲艺", "文字", "舞蹈", "杂技艺术", "口述", "音乐"]; //1
+                var TortCount = [360, 780, 156, 220, 390, 700]; //2
+                var sumArr = [940, 940, 940, 940, 940, 940]; //3
+                draw(creationType, TortCount, sumArr);
             }
+        });
 
-            // console.log(TortCountPercentage)
-
+        function draw(creationType, TortCount, sumArr) {
 
             // 声明颜色数组
             var myColor = ["#1089E7", "#F57474", "#56D0E3", "#F8B448", "#8B78F6"];
@@ -270,48 +301,62 @@ function update(){
                 myChart.resize();
             });
         }
-    });
 
-})();
+    })();
 
-//折线图1 左中 不同作品类型的侵权数量变化
-(function() {
+    //折线图1 左中 不同作品类型的侵权数量变化
+    (function() {
 
-    $.ajax({
-        url: "http://39.102.93.47:9002/backend/listen/TortCountGroupByWorkTypeEXchange",
-        type: "get",
-        dataType: "json",
-        success: function(response) {
+        var flagRectrive = false;
 
-            console.log('左中success');
+        $.ajax({
+            url: "http://39.102.93.47:9002/backend/listen/TortCountGroupByWorkTypeEXchange",
+            type: "get",
+            dataType: "json",
+            success: function(response) {
 
-            // x轴月份
-            var x_num = new Array();
-            for (var i = 0; i < response.data.length; i++) {
-                x_num.push(response.data[i][0]['Month'])
-            }
-            // console.log(x_num);
+                flagRectrive = true; // 收到有效数据
+                console.log('左中success');
 
-
-            // 作品类型 ["文字","口述","音乐"]
-            var workType = new Array();
-            for (var i = 0; i < response.data[0].length; i++) {
-                workType.push(response.data[0][i]['workType'])
-            }
-            // console.log(workType);
-
-            // y轴数据
-            var y_num = new Array();
-            for (var i = 0; i < response.data[0].length; i++) { //4
-                var a = new Array();
-                for (var j = 0; j < response.data.length; j++) { //3
-                    a.push(response.data[j][i]['TortCount']);
+                // x轴月份
+                var x_num = new Array(); //1
+                for (var i = 0; i < response.data.length; i++) {
+                    x_num.push(response.data[i][0]['Month'])
                 }
-                y_num.push(a)
+                console.log(x_num);
+
+
+                // 作品类型 ["文字","口述","音乐"]
+                var workType = new Array(); //2
+                for (var i = 0; i < response.data[0].length; i++) {
+                    workType.push(response.data[0][i]['workType'])
+                }
+                console.log(workType);
+
+                // y轴数据
+                var y_num = new Array(); //3
+                for (var i = 0; i < response.data[0].length; i++) { //4
+                    var a = new Array();
+                    for (var j = 0; j < response.data.length; j++) { //3
+                        a.push(response.data[j][i]['TortCount']);
+                    }
+                    y_num.push(a)
+                }
+                console.log(y_num)
+
+                draw(x_num, workType, y_num);
+
+            },
+            error: function() {
+                console.log('左中error');
+                var x_num = ["八月", "九月", "十月", "十一月", "十二月", "一月", "二月", "三月", "四月", "五月", "六月", "七月"]; //1
+                var workType = ["图形", "文字", "美术"]; //2
+                var y_num = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 185, 0],[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 174, 0],[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 159, 0]]; //3
+                draw(x_num, workType, y_num);
             }
-            // console.log(y_num)
+        });
 
-
+        function draw(x_num, workType, y_num) {
 
             //1. 实例化对象
             var myChart = echarts.init(document.querySelector(".line .chart"));
@@ -393,48 +438,64 @@ function update(){
             window.addEventListener("resize", function() {
                 myChart.resize();
             });
+
         }
-    });
 
-})();
+    })();
 
-//折线图2 右中 不同创作类型的侵权数量变化
-(function() {
+    //折线图2 右中 不同创作类型的侵权数量变化
+    (function() {
 
-    $.ajax({
-        url: "http://39.102.93.47:9002/backend/listen/TortCountGroupByCreationTypeEXchange",
-        type: "get",
-        dataType: "json",
-        success: function(response) {
+        var flagRectrive = false;
 
-            console.log('右中success');
+        $.ajax({
+            url: "http://39.102.93.47:9002/backend/listen/TortCountGroupByCreationTypeEXchange",
+            type: "get",
+            dataType: "json",
+            success: function(response) {
 
-            // x轴月份
-            var x_num = new Array();
-            for (var i = 0; i < response.data.length; i++) {
-                x_num.push(response.data[i][0]['Month'])
-            }
-            // console.log(x_num);
+                flagRectrive = true; // 收到有效数据
+                console.log('右中success');
 
-
-            // 作品类型 ["文字","口述","音乐"]
-            var creationType = new Array();
-            for (var i = 0; i < response.data[0].length; i++) {
-                creationType.push(response.data[0][i]['creationType'])
-            }
-            // console.log(creationType);
-
-            // y轴数据
-            var y_num = new Array();
-            for (var i = 0; i < response.data[0].length; i++) { //4
-                var a = new Array();
-                for (var j = 0; j < response.data.length; j++) { //3
-                    a.push(response.data[j][i]['TortCount']);
+                // x轴月份
+                var x_num = new Array();//1
+                for (var i = 0; i < response.data.length; i++) {
+                    x_num.push(response.data[i][0]['Month'])
                 }
-                y_num.push(a)
-            }
-            // console.log(y_num)
+                console.log(x_num);
 
+
+                // 作品类型 ["文字","口述","音乐"]
+                var creationType = new Array();//2
+                for (var i = 0; i < response.data[0].length; i++) {
+                    creationType.push(response.data[0][i]['creationType'])
+                }
+                console.log(creationType);
+
+                // y轴数据
+                var y_num = new Array();//3
+                for (var i = 0; i < response.data[0].length; i++) { //4
+                    var a = new Array();
+                    for (var j = 0; j < response.data.length; j++) { //3
+                        a.push(response.data[j][i]['TortCount']);
+                    }
+                    y_num.push(a)
+                }
+                console.log(y_num)
+
+                draw(x_num,creationType,y_num)
+                
+            },
+            error: function() {
+                console.log('右中error');
+                var x_num = ["八月", "九月", "十月", "十一月", "十二月", "一月", "二月", "三月", "四月", "五月", "六月", "七月"];//1
+                var creationType = ["曲艺", "文字", "舞蹈"];//2
+                var y_num = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 166, 0],[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 164, 0],[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 156, 0]]; //3
+                draw(x_num,creationType,y_num)
+            }
+        });
+
+        function draw(x_num,creationType,y_num){
 
             //1. 实例化对象
             var myChart = echarts.init(document.querySelector(".line2 .chart"));
@@ -644,30 +705,45 @@ function update(){
             window.addEventListener("resize", function() {
                 myChart.resize();
             });
+
         }
-    });
 
-})();
+    })();
 
-//饼形图1 左下 侵权数量前三的站点
-(function test() {
+    //饼形图1 左下 侵权数量前三的站点
+    (function test() {
 
-    $.ajax({
-        url: "http://39.102.93.47:9002/backend/listen/TortCountGroupByTortSite",
-        type: "get",
-        dataType: "json",
-        success: function(response) {
+        var flagRectrive = false;
 
-            console.log('左下success');
+        $.ajax({
+            url: "http://39.102.93.47:9002/backend/listen/TortCountGroupByTortSite",
+            type: "get",
+            dataType: "json",
+            success: function(response) {
 
-            var num = [];
-            response.data.forEach(function(value, index, array) {
-                var obj = new Object();
-                obj.name = array[index]['TortSite'];
-                obj.value = array[index]['TortCount'];
-                num.push(obj)
-            });
-            // console.log(num);
+                flagRectrive = true; // 收到有效数据
+                console.log('左下success');
+
+                var num = [];
+                response.data.forEach(function(value, index, array) {
+                    var obj = new Object();
+                    obj.name = array[index]['TortSite'];
+                    obj.value = array[index]['TortCount'];
+                    num.push(obj)
+                });
+                console.log(num);
+
+                draw(num);
+
+            },
+            error: function() {
+                console.log('左下error');
+                var num = [{name: "乐视", value: 577}, {name: "新浪", value: 233}, {name: "酷狗", value: 187}];
+                draw(num);
+            }
+        });
+        
+        function draw(num){
 
             //1. 实例化对象
             var myChart = echarts.init(document.querySelector(".pie .chart"));
@@ -733,40 +809,46 @@ function update(){
                 myChart.resize();
             });
 
-            // function direct() {
-            //     console.info("time: ", (new Date()).getTime());
-            // }
-            // setInterval(direct(), 1000);
         }
-    });
 
-    // setTimeout(console.log(1),500);
+    })();
 
+    //饼形图2 右下 
+    (function() {
 
-})();
+        var flagRectrive = false;
 
-//饼形图2 右下 
-(function() {
-    
-    $.ajax({
-        url: "http://39.102.93.47:9002/backend/listen/TortCountGroupByTortSiteGroupByWorkType",
-        type: "get",
-        dataType: "json",
-        success: function(response) {
+        $.ajax({
+            url: "http://39.102.93.47:9002/backend/listen/TortCountGroupByTortSiteGroupByWorkType",
+            type: "get",
+            dataType: "json",
+            success: function(response) {
 
-            var num = [];
-            response.data.forEach(function(value, index, array) {
-                var obj = new Object();
-                obj.name = array[index]['workType'];
-                obj.value = array[index]['TortCount'];
-                num.push(obj)
-            });
-            // console.log(num);
+                flagRectrive = true; // 收到有效数据
+                console.log('右下success');
 
-            console.log('右下success');
+                var num = [];
+                response.data.forEach(function(value, index, array) {
+                    var obj = new Object();
+                    obj.name = array[index]['workType'];
+                    obj.value = array[index]['TortCount'];
+                    num.push(obj)
+                });
+                console.log(num);
+
+                draw(num);
+            },
+            error: function() {
+                console.log('右下error');
+                var num = [{name: "图形", value: 176}, {name: "文字", value: 160}, {name: "美术", value: 147}, {name: "音乐", value: 142}, {name: "口述", value: 56}, {name: "曲艺", value: 43}]
+                draw(num);
+            }
+        });
+
+        function draw(num){
 
             //1. 实例化对象          
-            var myChart = echarts.init(document.querySelector(".pie2 .chart")); 
+            var myChart = echarts.init(document.querySelector(".pie2 .chart"));
 
             //2. 指定配置和数据
             var option = {
@@ -817,39 +899,57 @@ function update(){
             window.addEventListener("resize", function() {
                 myChart.resize();
             });
+
         }
-    });
 
 
-})();
+    })();
 
-//中间部分
-(function() {
+    //中间部分
+    (function() {
 
-    $.ajax({
-        url: "http://39.102.93.47:9002/backend/listen/Tort_AND_ClaimCountGroupByWorkType",
-        type: "get",
-        dataType: "json",
-        success: function(response) {
+        var flagRectrive = false;
 
-            var num = [];
-            var ClaimCount = [];
-            var TortCount = [];
+        $.ajax({
+            url: "http://39.102.93.47:9002/backend/listen/Tort_AND_ClaimCountGroupByWorkType2",
+            type: "get",
+            dataType: "json",
+            success: function(response) {
 
-            response.data.forEach(function(value, index, array) {
-                var obj = new Object();
-                obj.name = array[index]['workType'];
-                obj.max = array[index]['TortCount'];
-                ClaimCount.push(array[index]['ClaimCount'])
-                TortCount.push(array[index]['TortCount'])
-                num.push(obj)
-            });
+                flagRectrive = true; // 收到有效数据
+                console.log('中间success');
 
-            // console.log(ClaimCount);
-            // console.log(TortCount);
-            // console.log(num);
+                var num = [];
+                var ClaimCount = [];
+                var TortCount = [];
 
-            console.log('中间success');
+                response.data.forEach(function(value, index, array) {
+                    var obj = new Object();
+                    obj.name = array[index]['workType'];
+                    obj.max = array[index]['TortCount'];
+                    ClaimCount.push(array[index]['ClaimCount'])
+                    TortCount.push(array[index]['TortCount'])
+                    num.push(obj)
+                });
+
+                console.log(ClaimCount);
+                // console.log(TortCount);
+                console.log(num);
+
+                draw(num,ClaimCount)
+                
+            },
+            error: function() {
+                console.log('中间error');
+
+                var ClaimCount = [80, 100, 20, 70, 10, 3];
+                var num = [{name: "图形", max: 185}, {name: "文字", max: 174}, {name: "美术", max: 159}, {name: "音乐", max: 158}, {name: "口述", max: 57}, {name: "曲艺", max: 45}];
+
+                draw(num,ClaimCount);
+            }
+        });
+
+        function draw(num,ClaimCount){
 
             //1. 实例化对象
             var myChart = echarts.init(document.querySelector(".map .chart"));
@@ -907,11 +1007,11 @@ function update(){
             window.addEventListener("resize", function() {
                 myChart.resize();
             });
+
         }
-    });
 
 
-})();
+    })();
 
 
 
