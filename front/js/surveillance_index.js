@@ -5,7 +5,7 @@
 // })();
 
 update();
-self.setInterval("update()", 100000);
+self.setInterval("update()", 10000);
 
 function update() {
 
@@ -911,7 +911,7 @@ function update() {
         var flagRectrive = false;
 
         $.ajax({
-            url: "http://39.102.93.47:9002/backend/listen/Tort_AND_ClaimCountGroupByWorkType2",
+            url: "http://39.102.93.47:9002/backend/listen/Tort_AND_ClaimCountGroupByWorkType",
             type: "get",
             dataType: "json",
             success: function(response) {

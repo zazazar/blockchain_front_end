@@ -248,6 +248,125 @@ header .showTime {
 .mainbox .rightpanel .chart {
   height: 3rem;
 }
+
+/* 顶部按钮样式 */
+/* Larger buttons styles */
+.button.large {
+  padding: 6px 15px;
+  text-transform: uppercase;
+}
+.button.large:active {
+  top: 2px;
+}
+/* Colored buttons styles */
+.button.blue {
+  color: #fff;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0.3)), to(rgba(255, 255, 255, 0)));
+  background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0));
+  background-image: -moz-linear-gradient(top, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0));
+  background-image: -ms-linear-gradient(top, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0));
+  background-image: -o-linear-gradient(top, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0));
+  background-image: linear-gradient(top, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0));
+}
+.button.blue {
+  background-color: #269CE9;
+  border-color: #269CE9;
+}
+.button.blue:hover {
+  background-color: #70B9E8;
+}
+.button.blue:active {
+  background: #269CE9;
+}
+.blue[disabled],
+.blue[disabled]:hover,
+.blue[disabled]:active {
+  border-color: #269CE9;
+  background: #269CE9;
+  color: #93D5FF;
+}
+.button.blueShadow {
+  color: #fff;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0.3)), to(rgba(255, 255, 255, 0)));
+  background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0));
+  background-image: -moz-linear-gradient(top, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0));
+  background-image: -ms-linear-gradient(top, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0));
+  background-image: -o-linear-gradient(top, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0));
+  background-image: linear-gradient(top, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0));
+}
+.button.blueShadow {
+  background-color: White;
+  border-color: White;
+}
+.button.blueShadow:hover {
+  background-color: #70B9E8;
+}
+.button.blueShadow:active {
+  background: #93D5FF;
+}
+.blueShadow[disabled],
+.blueShadow[disabled]:hover,
+.blueShadow[disabled]:active {
+  border-color: #93D5FF;
+  background: #93D5FF;
+  color: #93D5FF;
+}
+/* Group buttons */
+.button-group,
+.button-group li {
+  display: inline-block;
+  *display: inline;
+  zoom: 1;
+  margin-right: -1px;
+  /* Overlap each right button border */
+}
+.button-group {
+  font-size: 0;
+  /* Inline block elements gap - fix */
+  margin: 0;
+  background: rgba(0, 0, 0, 0.1);
+  border-bottom: 3px rgba(0, 0, 0, 0.1);
+  padding: 3px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+}
+.button-group .button {
+  font-size: 13px;
+  /* Set the font size, different from inherited 0 */
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+}
+.button-group .button:active {
+  -moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.2) inset, 5px 0 5px -3px rgba(0, 0, 0, 0.2) inset, -5px 0 5px -3px rgba(0, 0, 0, 0.2) inset;
+  -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.2) inset, 5px 0 5px -3px rgba(0, 0, 0, 0.2) inset, -5px 0 5px -3px rgba(0, 0, 0, 0.2) inset;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.2) inset, 5px 0 5px -3px rgba(0, 0, 0, 0.2) inset, -5px 0 5px -3px rgba(0, 0, 0, 0.2) inset;
+}
+.button-group li:first-child .button {
+  -moz-border-radius: 3px 0 0 3px;
+  -webkit-border-radius: 3px 0 0 3px;
+  border-radius: 3px 0 0 3px;
+}
+.button-group li:first-child .button:active {
+  -moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.2) inset, -5px 0 5px -3px rgba(0, 0, 0, 0.2) inset;
+  -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.2) inset, -5px 0 5px -3px rgba(0, 0, 0, 0.2) inset;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.2) inset, -5px 0 5px -3px rgba(0, 0, 0, 0.2) inset;
+}
+.button-group li:last-child .button {
+  -moz-border-radius: 0 3px 3px 0;
+  -webkit-border-radius: 0 3px 3px 0;
+  border-radius: 0 3px 3px 0;
+}
+.button-group li:last-child .button:active {
+  -moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.2) inset, 5px 0 5px -3px rgba(0, 0, 0, 0.2) inset;
+  -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.2) inset, 5px 0 5px -3px rgba(0, 0, 0, 0.2) inset;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.2) inset, 5px 0 5px -3px rgba(0, 0, 0, 0.2) inset;
+}
+
+
 /* 约束屏幕尺寸 */
 @media screen and (max-width: 1024px) {
   html {

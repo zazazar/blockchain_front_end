@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,6 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>监测维权</title>
+    <style type="text/css">
+        a{text-decoration:none;}
+    </style>
     <link rel="stylesheet" href="css/surveillance.css">
     <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="js/flexible.js"></script>
@@ -16,7 +20,13 @@
 <body>
     <!-- 头部的盒子 -->
     <header>
-        <h1>监测维权</h1>
+        <h1>
+            <ul class="button-group">
+                <li><button class="large blueShadow button" ><a href="confirmation.html" style="font-size: 0.4rem;color: white" >存证确权</a></button></li>
+                <li><button class="large blue button" ><a href="surveillance.html" style="font-size: 0.4rem;color: white" >监测维权</a></button></li>
+            </ul>
+        </h1>
+
         <div class="showTime"></div>
         <script>
             var t = null;
@@ -109,7 +119,7 @@
     //发现侵权作品总数量
     function TortCount() {
         // 这里是同步调用了ajax
-        var a = 1000;
+        var a = 0;
         $.ajax({
             url: "http://39.102.93.47:9002/backend/listen/TortCount",
             type: "get",
@@ -125,13 +135,14 @@
     // 被侵权作品总点击数
     function TortClickCount() {
         // 这里是同步调用了ajax
-        var a = 1000;
+        var a = 0;
         $.ajax({
             url: "http://39.102.93.47:9002/backend/listen/TortClickCount",
             type: "get",
             dataType: "json",
             async : false,
             success: function (response) {
+                console.log(response.data)
                 a = response.data.toString();
             }
         });
