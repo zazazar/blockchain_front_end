@@ -48,3 +48,6 @@ function draw(num_Month, num_CertificateAmount){}
 
 ### 7.02 surveillance加入自动刷新和假数据
 surveillance加入自动刷新和假数据
+
+### 7.06 添加了顶部按钮（存证确权和监测维权可以相互跳转）
+改动了css,html文件（没有改动less文件 现在less和css不同步）
