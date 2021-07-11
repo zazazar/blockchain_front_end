@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,8 +21,8 @@
     <header>
         <h1>
             <ul class="button-group">
-                <li><button class="large blueShadow button" ><a href="confirmation.html" style="font-size: 0.4rem;color: white" >存证确权</a></button></li>
-                <li><button class="large blue button" ><a href="surveillance.html" style="font-size: 0.4rem;color: white" >监测维权</a></button></li>
+                <li><button class="large blueShadow button" ><a href="confirmation.html" style="font-size: 0.4rem;color: black" >存证确权</a></button></li>
+                <li><button class="large blue button" ><a href="surveillance.html" style="font-size: 0.4rem;color: black" >监测维权</a></button></li>
             </ul>
         </h1>
 
@@ -142,7 +141,6 @@
             dataType: "json",
             async : false,
             success: function (response) {
-                console.log(response.data)
                 a = response.data.toString();
             }
         });
