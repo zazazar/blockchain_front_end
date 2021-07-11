@@ -176,9 +176,9 @@ function update() {
             },
             error: function() {
                 console.log('右上error');
-                var creationType = ["曲艺", "文字", "舞蹈", "杂技艺术", "口述", "音乐"]; //1
-                var TortCount = [360, 780, 156, 220, 390, 700]; //2
-                var sumArr = [940, 940, 940, 940, 940, 940]; //3
+                var creationType = ["原创", "改编", "翻译"]; //1
+                var TortCount = [360, 780, 156]; //2
+                var sumArr = [940, 940, 940]; //3
                 draw(creationType, TortCount, sumArr);
             }
         });
@@ -194,7 +194,7 @@ function update() {
             var option = {
 
                 legend: {
-                    data: ['2011年', '2012年']
+                    data: ['2020年', '2021年']
                 },
                 grid: {
                     top: '10%',
@@ -268,13 +268,15 @@ function update() {
                         },
                         // 图形上的文本标签
                         label: {
-                            normal: {
+                            
                                 show: true,
                                 // 图形内显示
-                                position: "inside",
+                                position: "insideLeft",
                                 // 文字的显示格式
-                                formatter: "{c}"
-                            }
+                                formatter: "{c}",
+                                color: "#fff",
+                                fontSize: 10
+                            
                         }
                     },
 
@@ -926,7 +928,7 @@ function update() {
                 response.data.forEach(function(value, index, array) {
                     var obj = new Object();
                     obj.name = array[index]['workType'];
-                    obj.max = array[index]['TortCount'];
+                    obj.max = array[index]['TortCount']+1;
                     ClaimCount.push(array[index]['ClaimCount'])
                     TortCount.push(array[index]['TortCount'])
                     num.push(obj)

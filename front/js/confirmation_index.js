@@ -183,7 +183,7 @@ function update() {
                 },
 
                 series: [{
-                    name: '通证接受者',
+                    name: '通证数量',
                     type: 'pie',
                     radius: '65%',
                     data: num,
