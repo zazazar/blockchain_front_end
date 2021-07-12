@@ -61,8 +61,8 @@ function update() {
                     itemHeight: 10,
                     itemWidth: 10,
                     textStyle: {
-                        color: "rgba(255,255,255,.5)",
-                        fontSize: "8"
+                        color: "rgba(248,248,255,1)",
+                        fontSize: "11"
                     }
                 },
                 tooltip: {
@@ -76,7 +76,7 @@ function update() {
                 series: [{
                     name: '存证数量',
                     type: 'pie',
-                    radius: ['50%', '75%'],
+                    radius: ['45%', '65%'],
                     avoidLabelOverlap: true,
                     itemStyle: {
                         borderRadius: 10,
@@ -177,8 +177,8 @@ function update() {
                     itemHeight: 10,
                     itemWidth: 10,
                     textStyle: {
-                        color: "rgba(255,255,255,.5)",
-                        fontSize: "8"
+                        color: "rgba(248,248,255,1)",
+                        fontSize: "11"
                     }
                 },
 
@@ -270,8 +270,8 @@ function update() {
                     itemHeight: 10,
                     itemWidth: 10,
                     textStyle: {
-                        color: "rgba(255,255,255,.5)",
-                        fontSize: "8"
+                        color: "rgba(248,248,255,1)",
+                        fontSize: "11"
                     }
                 },
 
@@ -279,7 +279,7 @@ function update() {
                     name: '通证数量',
                     type: 'pie',
                     top: "0%",
-                    radius: ['10%', '60%'],
+                    radius: ['10%', '50%'],
                     center: ["50%", "50%"],
                     roseType: "area",
                     // 文本标签控制饼形图文字的相关样式， 注意它是一个对象
@@ -374,8 +374,8 @@ function update() {
                     // 文本颜色为rgba(255,255,255,.6)  文字大小为 12
                     axisLabel: {
                         textStyle: {
-                            color: "rgba(255,255,255,.6)",
-                            fontSize: 8
+                            color: "rgba(248,248,255,1)",
+                            fontSize: 11
                         }
                     },
                     // x轴线的颜色为   rgba(255,255,255,.2)
@@ -588,8 +588,8 @@ function update() {
                     // 文本颜色为rgba(255,255,255,.6)  文字大小为 12
                     axisLabel: {
                         textStyle: {
-                            color: "rgba(255,255,255,.6)",
-                            fontSize: 8
+                            color: "rgba(248,248,255,1)",
+                            fontSize: 11
                         }
                     },
                     // x轴线的颜色为   rgba(255,255,255,.2)
@@ -804,8 +804,8 @@ function update() {
 
                 legend: {
                     show: true,
-                    textStyle:{
-                        color: "rgba(255,255,255,.5)",
+                    textStyle: {
+                        color: "rgba(248,248,255,1)",
                         fontSize: "12"
                     }
                 },
@@ -828,7 +828,14 @@ function update() {
                 xAxis: {
                     type: 'category',
                     //data: ['二月', '五月', '八月', '十一月']
-                    data: x_num
+                    data: x_num,
+
+                    axisLabel: {
+                        textStyle: {
+                            color: '#fff',
+                            fontSize: '12',
+                        }
+                    }
                 },
                 yAxis: {
                     type: 'value'
