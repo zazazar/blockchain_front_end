@@ -62,7 +62,7 @@ function update() {
                     itemWidth: 10,
                     textStyle: {
                         color: "rgba(248,248,255,1)",
-                        fontSize: "11"
+                        fontSize: "12"
                     }
                 },
                 tooltip: {
@@ -178,7 +178,7 @@ function update() {
                     itemWidth: 10,
                     textStyle: {
                         color: "rgba(248,248,255,1)",
-                        fontSize: "11"
+                        fontSize: "12"
                     }
                 },
 
@@ -271,7 +271,7 @@ function update() {
                     itemWidth: 10,
                     textStyle: {
                         color: "rgba(248,248,255,1)",
-                        fontSize: "11"
+                        fontSize: "12"
                     }
                 },
 
